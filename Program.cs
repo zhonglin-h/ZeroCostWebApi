@@ -1,13 +1,26 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using testWebAPI.Data;
+using testWebAPI.Repository;
+using testWebAPI.Repository.Contract;
+using testWebAPI.Service;
+using testWebAPI.Service.Contract;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddDbContext<DataContext>(options =>
-                options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))); // Replace 'DefaultConnection' with your connection string key
+{
+    options.UseNpgsql(Environment.GetEnvironmentVariable("CUSTOMCONNSTR_PostgresDb"));
+    options.UseSnakeCaseNamingConvention();
+});
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+// inject layers
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -23,9 +23,9 @@ namespace testWebAPI.Entities
         public string LastName { get; set; }
 
         [MaxLength(255)]
-        public string MiddleName { get; set; }
+        public string? MiddleName { get; set; }
 
         [MaxLength(255)]
-        public string WechatId { get; set; }
+        public string? WechatId { get; set; }
     }
 }
