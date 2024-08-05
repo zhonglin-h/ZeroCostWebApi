@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using testWebAPI.Dtos.Student;
 using testWebAPI.Service.Contract;
 
@@ -16,6 +17,7 @@ namespace testWebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StudentDto>))]
         public async Task<IActionResult> GetAll()
         {

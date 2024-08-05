@@ -26,7 +26,7 @@ namespace testWebAPI.Service.Authentication
                 return AuthenticateResult.NoResult();
             }
 
-            string bearerToken = context.Request.Headers["Authorization"];
+            string bearerToken = context.Request.Headers.Authorization;
 
             if (bearerToken == null || !bearerToken.StartsWith(BEARER_PREFIX))
                 return AuthenticateResult.Fail("Invalid scheme");
