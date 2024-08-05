@@ -25,6 +25,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // inject layers
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -51,7 +52,6 @@ builder.Services.AddSingleton(FirebaseApp.Create(new AppOptions
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddScheme<AuthenticationSchemeOptions, FirebaseAuthenticationHandler> (JwtBearerDefaults.AuthenticationScheme, (o) => { });
 builder.Services.AddScoped<FirebaseAuthenticationFunctionHandler>();
-
 
 var app = builder.Build();
 
