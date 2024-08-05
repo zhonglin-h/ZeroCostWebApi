@@ -67,6 +67,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddScheme<AuthenticationSchemeOptions, FirebaseAuthenticationHandler> (JwtBearerDefaults.AuthenticationScheme, (o) => { });
 builder.Services.AddScoped<FirebaseAuthenticationFunctionHandler>();
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -81,5 +83,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHealthChecks("/healthz");
 
 app.Run();
