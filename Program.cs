@@ -61,7 +61,8 @@ builder.Services.AddSwaggerGen(c =>
 // authentication
 builder.Services.AddSingleton(FirebaseApp.Create(new AppOptions
 {
-    Credential = GoogleCredential.GetApplicationDefault()
+    Credential = GoogleCredential.GetApplicationDefault(),
+    ProjectId = Environment.GetEnvironmentVariable("GOOGLE_CLOUD_PROJECT")
 }));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddScheme<AuthenticationSchemeOptions, FirebaseAuthenticationHandler> (JwtBearerDefaults.AuthenticationScheme, (o) => { });
