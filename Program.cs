@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using testWebAPI.Data;
-using testWebAPI.Repository;
-using testWebAPI.Repository.Contract;
 using testWebAPI.Service;
 using testWebAPI.Service.Authentication;
 using testWebAPI.Service.Contract;
@@ -23,7 +21,6 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // inject layers
-builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
