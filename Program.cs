@@ -24,7 +24,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -75,6 +77,8 @@ app.UseSwaggerUI();
 app.UseAuthorization();
 
 app.MapControllers();
+if (app.Environment.IsDevelopment())
+    app.MapControllers().AllowAnonymous();
 
 app.MapHealthChecks("/healthz");
 
