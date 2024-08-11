@@ -3,18 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace testWebAPI.Entities
 {
-
-    public class Student
+    public class Teacher
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int StudentId { get; set; }
+        public int TeacherId { get; set; }
 
-        public DateTime UpdateDate { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string? Grade { get; set; }
+        [Timestamp]
+        public Byte[] UpdateDate { get; set; }
 
         [Required]
         [MaxLength(255)]
@@ -31,13 +27,13 @@ namespace testWebAPI.Entities
         public string? WechatId { get; set; }
 
         [MaxLength(255)]
-        public string? StudentEmail { get; set; }
+        public string PrimaryGmail { get; set; }
 
         [MaxLength(255)]
-        public string? ParentEmail { get; set; }
+        public string? CommunicationEmail { get; set; }
 
         [MaxLength(255)]
-        public string? ParentPhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [MaxLength(255)]
         public string? ExtraInfo { get; set; }
