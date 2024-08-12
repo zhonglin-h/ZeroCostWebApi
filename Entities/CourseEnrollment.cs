@@ -9,8 +9,7 @@ namespace testWebAPI.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CourseEnrollmentId { get; set; }
 
-        [Timestamp]
-        public Byte[] UpdateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
 
         public Course Course { get; set; }
 

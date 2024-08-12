@@ -8,5 +8,9 @@ namespace testWebAPI.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet <Entities.Student> Students { get; set; }
+
+        public DbSet<Entities.Course> Courses { get; set; }
+
+        public DbSet<Entities.CourseEnrollment> CourseEnrollments { get; set; }
     }
 }

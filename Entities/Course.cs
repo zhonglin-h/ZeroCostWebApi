@@ -9,15 +9,14 @@ namespace testWebAPI.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CourseId { get; set; }
 
-        [Timestamp]
-        public Byte[] UpdateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
 
         [MaxLength(255)]
         public string Name { get; set; }
 
-        public Class Class { get; set; }
+        public Class? Class { get; set; }
 
-        public Teacher Teacher { get; set; }
+        public Teacher? Teacher { get; set; }
 
         public DateOnly StartDate {  get; set; }
 
@@ -28,5 +27,8 @@ namespace testWebAPI.Entities
         public float DefaultCostPerLessonPerStudent { get; set; }
 
         public float TeacherPayPerClass { get; set; }
+
+        // Navigation Properties
+        public ICollection<CourseEnrollment> CourseEnrollments { get; set; }
     }
 }

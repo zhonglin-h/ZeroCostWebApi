@@ -41,5 +41,8 @@ namespace testWebAPI.Entities
 
         [MaxLength(255)]
         public string? ExtraInfo { get; set; }
+
+        // Navigation Properties
+        public ICollection<CourseEnrollment> CourseEnrollments { get; set; }
     }
 }

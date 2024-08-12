@@ -60,10 +60,21 @@ namespace testWebAPI.Service
             try
             {
                 var query = _dataContext.Students.AsQueryable();
-                foreach (var (key, value) in criteriasDto.criterias)
+                foreach (var (key, value) in criteriasDto.studentCriterias)
                 {
                     if (!value.IsNullOrEmpty())
                         query = query.Where(s => EF.Property<object>(s, key) != null && EF.Property<string>(s, key).Equals(value));
+                }
+
+                if (!criteriasDto.courseCriterias.IsNullOrEmpty())
+                {
+                    query = query.Include(s => s.CourseEnrollments).ThenInclude(ce => ce.Course);
+                }
+
+                foreach (var (key, value) in criteriasDto.courseCriterias)
+                {
+                    if (!value.IsNullOrEmpty())
+                        query = query.Where(s => s.CourseEnrollments.Any(ce => EF.Property<object>(ce.Course, key) != null && EF.Property<string>(ce.Course, key).Equals(value)));
                 }
 
                 var studentsList = await query.ToListAsync();
