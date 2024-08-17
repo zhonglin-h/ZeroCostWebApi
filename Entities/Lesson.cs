@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace testWebAPI.Entities
 {
-    public class Class
+    public class Lesson
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,10 +13,17 @@ namespace testWebAPI.Entities
 
         public DateTime CreateTimestamp { get; set; }
 
-        [MaxLength(255)]
-        public string Name { get; set; }
+        public string GCalendarId { get; set; }
 
-        [Required]
-        public int Level { get; set; }
+        public string GEventId { get; set; }
+
+        public DateTime StartTimestamp { get; set; }
+
+        public float Duration { get; set; }
+
+        public Course Course { get; set; }
+
+        [Column(TypeName = "text")]
+        public string ExtraInfo { get; set; }
     }
 }

@@ -8,9 +8,11 @@ namespace testWebAPI.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int StudentId { get; set; }
+        public int Id { get; set; }
 
-        public DateTime UpdateDate { get; set; }
+        public DateTime UpdateTimestamp { get; set; }
+
+        public DateTime CreateTimestamp { get; set; }
 
         [Required]
         [MaxLength(255)]
@@ -39,7 +41,7 @@ namespace testWebAPI.Entities
         [MaxLength(255)]
         public string? ParentPhoneNumber { get; set; }
 
-        [MaxLength(255)]
+        [Column(TypeName = "text")]
         public string? ExtraInfo { get; set; }
 
         // Navigation Properties

@@ -7,9 +7,11 @@ namespace testWebAPI.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CourseEnrollmentId { get; set; }
+        public int Id { get; set; }
 
-        public DateTime UpdateDate { get; set; }
+        public DateTime UpdateTimestamp { get; set; }
+
+        public DateTime CreateTimestamp { get; set; }
 
         public Course Course { get; set; }
 
